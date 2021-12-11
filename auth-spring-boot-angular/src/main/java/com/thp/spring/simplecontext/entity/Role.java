@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class Role implements Serializable {
 	@Column(name = "roleName")
 	private String roleName = "";
 
-	@ManyToMany(mappedBy = "userRoles")
+	@ManyToMany(mappedBy = "userRoles",fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<User> users;
 

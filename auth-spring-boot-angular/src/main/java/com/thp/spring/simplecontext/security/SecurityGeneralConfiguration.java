@@ -64,7 +64,7 @@ public class SecurityGeneralConfiguration extends WebSecurityConfigurerAdapter {
 				// authentication
 				.antMatchers(HttpMethod.POST, "/user/auth").permitAll()
 				// user
-				.antMatchers(HttpMethod.GET, "/user/findRoles/{id}").permitAll()
+				.antMatchers(HttpMethod.GET, "/user/findRoles/{id}").hasRole("USER")
 				// announcement
 				.anyRequest().authenticated();
 

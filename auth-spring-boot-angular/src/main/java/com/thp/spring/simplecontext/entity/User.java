@@ -1,10 +1,13 @@
 package com.thp.spring.simplecontext.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,9 +38,9 @@ public class User implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> userRoles;
+	private List<Role> userRoles=new ArrayList<Role>();
 
 	public User() {
 	}
@@ -95,6 +98,21 @@ public class User implements Serializable {
 
 		return userRoles;
 
+	}
+	
+	public List<String> getRoleList() {
+		
+		List<String> allRoleNameList = new ArrayList<>() ;
+		if (userRoles.size()>0) {
+			
+			for(Role role:userRoles) {
+				List<String> roleNameList= Arrays.asList(role.getRoleName().split(","));
+				allRoleNameList.addAll(roleNameList) ;
+				
+			}
+		}
+		
+		return allRoleNameList;
 	}
 
 	public void setUserRoles(List<Role> userRoles) {

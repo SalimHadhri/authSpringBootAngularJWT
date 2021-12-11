@@ -44,9 +44,8 @@ public class UserPrincipal implements UserDetails {
 
 		List<GrantedAuthority> authorities = new ArrayList<>();
 
-		user.getUserRoles().forEach(r -> {
-			String nameRole = r.getRoleName();
-			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + nameRole);
+		user.getRoleList().forEach(roleName -> {
+			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + roleName);
 			authorities.add(authority);
 		});
 

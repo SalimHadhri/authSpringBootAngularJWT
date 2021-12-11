@@ -2,6 +2,7 @@ package com.thp.spring.simplecontext.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.thp.spring.simplecontext.entity.Role;
 
@@ -19,7 +20,7 @@ public class UserDto implements Serializable {
 
 	private String password;
 
-	private List<Role> userRoles;
+	private List<Role> userRoles=new ArrayList<Role>();
 
 	public UserDto() {
 	}
@@ -101,6 +102,21 @@ public class UserDto implements Serializable {
 	public String toString() {
 		return "UserDto [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", mail=" + mail
 				+ ", password=" + password + ", userRoles=" + userRoles + "]";
+	}
+
+public List<String> getRoleList() {
+		
+		List<String> allRoleNameList = new ArrayList<>() ;
+		if (userRoles.size()>0) {
+			
+			for(Role role:userRoles) {
+				List<String> roleNameList= Arrays.asList(role.getRoleName().split(","));
+				allRoleNameList.addAll(roleNameList) ;
+				
+			}
+		}
+		
+		return allRoleNameList;
 	}
 
 }
