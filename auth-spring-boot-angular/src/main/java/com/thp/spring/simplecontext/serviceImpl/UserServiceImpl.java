@@ -70,4 +70,34 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public UserDto addUser(UserDto userDto) {
+
+		User userToAdd = modelMapper.map(userDto, User.class);
+		User userAdded = userRepository.save(userToAdd);
+
+		return modelMapper.map(userAdded, UserDto.class);
+
+	}
+
+	@Override
+	public UserDto deleteUser(Long id) {
+
+		UserDto userDtoDeleted = findUserById(id);
+		userRepository.deleteById(id);
+
+		return userDtoDeleted;
+	}
+
+
+	@Override
+	public UserDto updateUser(Long id, UserDto userDto) {
+
+		userDto.setUserId(id);;
+
+		return addUser(userDto);
+	}
+	
+	
+
 }

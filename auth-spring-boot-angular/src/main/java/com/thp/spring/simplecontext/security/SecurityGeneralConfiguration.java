@@ -65,7 +65,15 @@ public class SecurityGeneralConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/user/auth").permitAll()
 				// user
 				.antMatchers(HttpMethod.GET, "/user/findRoles/{id}").hasRole("USER")
-				// announcement
+				.antMatchers(HttpMethod.POST, "/user/addUser").permitAll()
+				.antMatchers(HttpMethod.GET, "/user/ListAllUser").permitAll()
+				.antMatchers(HttpMethod.GET, "/user/findUser/{id}").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/user/deleteUser/{id}").permitAll()
+				.antMatchers(HttpMethod.PUT, "/user/updateUser/{id}").permitAll()
+
+
+				
+				
 				.anyRequest().authenticated();
 
 	}

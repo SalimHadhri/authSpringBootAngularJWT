@@ -13,5 +13,13 @@ public interface UserService {
 	public List<Role> findUserRolesByUserId(Long userId);
 
 	public UserDto findUserById(Long id);
+	
+	public UserDto addUser(UserDto userDto);
+	
+	public UserDto deleteUser(Long id) ;
+	
+	public UserDto updateUser(Long id , UserDto userDto) ;
+
+
 
 }
